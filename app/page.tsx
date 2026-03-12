@@ -1,5 +1,9 @@
+"use client";
 import Image from "next/image";
 import { cherryBomb } from "./fonts";
+import Snowfall from "react-snowfall";
+import home_data from "@/data/home_data.json"
+import { useEffect } from 'react'
 
 export default function Home() {
   return (
@@ -89,21 +93,35 @@ export default function Home() {
             natoque.
           </p>
         </div>
-        <div className="bg-secondary-gradient w-full p-4 rounded-2xl border-3"></div>
+        {/* Favorite Musics */}
+        <div className="bg-secondary-gradient w-full p-4 rounded-2xl border-3">
+          <h1 className="text-main [-webkit-text-stroke:1px_black] text-xl mb-3">
+            Favorite Artist:
+          </h1>
+          <iframe
+            data-testid="embed-iframe"
+            src="https://open.spotify.com/embed/artist/1eavaF4JYVytwilMtljNhO?utm_source=generator"
+            width="100%"
+            height="100%"
+            allow="clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"
+          ></iframe>{" "}
+        </div>
       </section>
       <section id="information" className="mt-3 flex relative gap-2 ">
         <div
           id="additionalInformation"
           className="bg-secondary-gradient p-4 rounded-2xl border-3 overflow-hidden w-[16%]"
         >
-          <h1 className="text-main text-xl[-webkit-text-stroke:1px_black]">Additional:</h1>
+          <h1 className="text-main text-xl [-webkit-text-stroke:1px_black]">
+            Additional:
+          </h1>
           <p className="[-webkit-text-stroke:1px_black] text-white  line-clamp-3">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           </p>
           <p className="[-webkit-text-stroke:1px_black] text-white  line-clamp-3">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           </p>
-
         </div>
 
         <div id="personal" className="relative flex flex-col justify-between">
@@ -118,23 +136,37 @@ export default function Home() {
                 width={30}
                 height={30}
               ></Image>
-              <span className="text-main text-xl [-webkit-text-stroke:1px_black]">Life goals:</span>
+              <span className="text-main text-xl [-webkit-text-stroke:1px_black]">
+                Life goals:
+              </span>
             </div>
             <ul className="text-white list-disc ">
-              <li className="mx-0 ml-6 [-webkit-text-stroke:1px_black]">To live happily with my family.</li>
-              <li className="mx-0 ml-6 [-webkit-text-stroke:1px_black]">To be Back-end dev.</li>
+              <li className="mx-0 ml-6 [-webkit-text-stroke:1px_black] ">
+                To live happily with my family.
+              </li>
+              <li className="mx-0 ml-6 [-webkit-text-stroke:1px_black]">
+                To be Back-end dev.
+              </li>
             </ul>
           </div>
 
           <div
             id="favoriteSeries "
-            className="bg-secondary-gradient p-4 rounded-2xl border-3 overflow-hidden w-48.75"
+            className="bg-secondary-gradient py-2 px-4 rounded-2xl border-3 overflow-hidden w-48.75"
           >
-            <span className="text-main text-xl [-webkit-text-stroke:1px_black]">Favorite Series:</span>
+            <span className="text-main text-xl [-webkit-text-stroke:1px_black]">
+              Favorite Series:
+            </span>
             <ul className="text-white list-disc ">
-              <li className="mx-0 ml-4 [-webkit-text-stroke:1px_black]">Touhou Project.</li>
-              <li className="mx-0 ml-4 [-webkit-text-stroke:1px_black]">Albion Online.</li>
-              <li className="mx-0 ml-4 [-webkit-text-stroke:1px_black]">Blue Archive.</li>
+              <li className="mx-0 ml-4 [-webkit-text-stroke:1px_black]">
+                Touhou Project.
+              </li>
+              <li className="mx-0 ml-4 [-webkit-text-stroke:1px_black]">
+                Albion Online.
+              </li>
+              <li className="mx-0 ml-4 [-webkit-text-stroke:1px_black]">
+                Blue Archive.
+              </li>
             </ul>
           </div>
         </div>
@@ -143,7 +175,10 @@ export default function Home() {
           id="socialMedia"
           className="relative flex flex-col items-center justify-between flex-1"
         >
-          <a href="#" className="bg-secondary-gradient rounded-full border-3 flex items-center justify-center w-full py-2">
+          <a
+            href="#"
+            className="bg-secondary-gradient rounded-full border-3 flex items-center justify-center w-full py-2"
+          >
             <span className="[-webkit-text-stroke:1px_black] flex items-center gap-2 text-main text-xl">
               <Image
                 src="/icons/github.png"
@@ -154,7 +189,10 @@ export default function Home() {
               Github
             </span>
           </a>
-          <a href="#" className="bg-secondary-gradient rounded-full border-3 flex items-center justify-center w-full py-2">
+          <a
+            href="#"
+            className="bg-secondary-gradient rounded-full border-3 flex items-center justify-center w-full py-2"
+          >
             <span className="[-webkit-text-stroke:1px_black] flex items-center gap-2 text-main text-xl">
               <Image
                 src="/icons/x.png"
@@ -165,7 +203,10 @@ export default function Home() {
               X (Twitter)
             </span>
           </a>
-          <a href="" className="bg-secondary-gradient rounded-full border-3 flex items-center justify-center w-full py-2">
+          <a
+            href=""
+            className="bg-secondary-gradient rounded-full border-3 flex items-center justify-center w-full py-2"
+          >
             <span className="[-webkit-text-stroke:1px_black] flex items-center gap-2 text-main text-xl">
               <Image
                 src="/icons/discord2.jpg"
@@ -177,7 +218,10 @@ export default function Home() {
               Github
             </span>
           </a>
-          <a href="" className="bg-secondary-gradient rounded-full border-3 flex items-center justify-center w-full py-2">
+          <a
+            href=""
+            className="bg-secondary-gradient rounded-full border-3 flex items-center justify-center w-full py-2"
+          >
             <span className=" [-webkit-text-stroke:1px_black] flex items-center gap-2 text-main text-xl">
               <Image
                 src="/icons/youtube.png"
@@ -190,6 +234,7 @@ export default function Home() {
           </a>
         </div>
       </section>
+      <Snowfall snowflakeCount={70} wind={[0.5, 1]} speed={[0.5, 1]} />
     </main>
   );
 }
