@@ -19,6 +19,8 @@ export default function Home() {
   }, []);
   return (
     <main className="h-full w-full flex items-center justify-center">
+      <Snowfall snowflakeCount={70} wind={[0.5, 1]} speed={[0.5, 1]} />
+
       <div className="w-4/5 m-auto">
         {/* Start of Biography Section  */}
         <section id="biography" className="flex gap-2">
@@ -253,7 +255,6 @@ export default function Home() {
             </a>
           </div>
         </section>
-        <Snowfall snowflakeCount={70} wind={[0.5, 1]} speed={[0.5, 1]} />
       </div>
     </main>
   );
