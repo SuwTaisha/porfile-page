@@ -3,10 +3,20 @@ import Image from "next/image";
 import { cherryBomb } from "./fonts";
 import Snowfall from "react-snowfall";
 import data from "@/data/home_data.json";
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 
 export default function Home() {
   const pageData = data[0];
+  useEffect(() => {
+    async function getData() {
+      const res = await fetch("/api/github");
+      const apiData = await res.json();
+
+      console.log(apiData);
+    }
+
+    getData();
+  }, []);
   return (
     <main className="h-full w-full flex items-center justify-center">
       <div className="w-4/5 m-auto">
@@ -126,10 +136,10 @@ export default function Home() {
               Additional:
             </h1>
             <p className="[-webkit-text-stroke:1px_black] text-white  line-clamp-3">
-              {pageData.additional_1}
+              {pageData?.additional_1}
             </p>
             <p className="[-webkit-text-stroke:1px_black] text-white  line-clamp-4">
-              {pageData.additional_2}
+              {pageData?.additional_2}
             </p>
           </div>
 
@@ -151,10 +161,10 @@ export default function Home() {
               </div>
               <ul className="text-white list-disc ">
                 <li className="mx-0 ml-6 [-webkit-text-stroke:1px_black] ">
-                  {pageData.life_1}
+                  {pageData?.life_1}
                 </li>
                 <li className="mx-0 ml-6 [-webkit-text-stroke:1px_black]">
-                  {pageData.life_2}
+                  {pageData?.life_2}
                 </li>
               </ul>
             </div>
@@ -168,13 +178,13 @@ export default function Home() {
               </span>
               <ul className="text-white list-disc ">
                 <li className="mx-0 ml-4 [-webkit-text-stroke:1px_black]">
-                  {pageData.series_1}
+                  {pageData?.series_1}
                 </li>
                 <li className="mx-0 ml-4 [-webkit-text-stroke:1px_black]">
-                  {pageData.series_2}
+                  {pageData?.series_2}
                 </li>
                 <li className="mx-0 ml-4 [-webkit-text-stroke:1px_black]">
-                  {pageData.series_3}
+                  {pageData?.series_3}
                 </li>
               </ul>
             </div>
@@ -185,7 +195,7 @@ export default function Home() {
             className="relative flex flex-col items-center justify-between flex-1"
           >
             <a
-              href={pageData.github}
+              href={pageData?.github}
               className="bg-secondary-gradient rounded-full border-3 flex items-center justify-center w-full py-2"
             >
               <span className="[-webkit-text-stroke:1px_black] flex items-center gap-2 text-main text-xl">
@@ -199,7 +209,7 @@ export default function Home() {
               </span>
             </a>
             <a
-              href={pageData.twitter}
+              href={pageData?.twitter}
               className="bg-secondary-gradient rounded-full border-3 flex items-center justify-center w-full py-2"
             >
               <span className="[-webkit-text-stroke:1px_black] flex items-center gap-2 text-main text-xl">
@@ -228,7 +238,7 @@ export default function Home() {
               </span>
             </a>
             <a
-              href={pageData.youtube}
+              href={pageData?.youtube}
               className="bg-secondary-gradient rounded-full border-3 flex items-center justify-center w-full py-2"
             >
               <span className=" [-webkit-text-stroke:1px_black] flex items-center gap-2 text-main text-xl">
