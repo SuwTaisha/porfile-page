@@ -5,6 +5,12 @@
     --color-sub-bg: #4F88F3;
 }
 
+.react-calendar-heatmap-month-label {
+    fill: #F1C40F !important;
+    stroke: #000 !important;     
+    stroke-width: 0.5 !important;     
+    font-size: 8px !important;
+}
 .bg-primary-gradient {
     background: #2838E2;
     background: linear-gradient(14deg, rgba(40, 56, 226, 1) 0%, rgba(35, 36, 40, 1) 70%);

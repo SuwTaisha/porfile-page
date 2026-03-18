@@ -3,16 +3,23 @@ import Image from "next/image";
 import { cherryBomb } from "./fonts";
 import Snowfall from "react-snowfall";
 import data from "@/data/home_data.json";
-import { Fragment, useEffect } from "react";
+import { Fragment, useEffect, useState } from "react";
+import CalendarHeatmap from "react-calendar-heatmap";
+import "react-calendar-heatmap/dist/styles.css";
+
 
 export default function Home() {
+  const [apiData, setApiData] = useState(null);
   const pageData = data[0];
+
   useEffect(() => {
     async function getData() {
       const res = await fetch("/api/github");
-      const apiData = await res.json();
-
-      console.log(apiData);
+      if(!res.ok) {
+        console.log('Fetching Data Error, Please contact to the page owner');
+      } else {
+        // Tmr Please map the result of API, also find a way to optimize the rate limit plz
+      }
     }
 
     getData();
@@ -191,7 +198,15 @@ export default function Home() {
               </ul>
             </div>
           </div>
-          <div className=" bg-secondary-gradient p-4 rounded-2xl border-3 overflow-hidden w-2/4"></div>
+          <div className=" bg-secondary-gradient p-4 rounded-2xl border-3 overflow-hidden w-2/4">
+            <h1 className="text-main text-xl [-webkit-text-stroke:1px_black]">Github Activities:</h1>
+            <CalendarHeatmap
+            showOutOfRangeDays={true}
+              values={[
+
+              ]}
+            />
+          </div>
           <div
             id="socialMedia"
             className="relative flex flex-col items-center justify-between flex-1"
