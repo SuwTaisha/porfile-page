@@ -9,10 +9,10 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@uiw/react-heat-map": "^2.3.3",
     "next": "^16.2.0",
     "postcss": "^8.5.8",
     "react": "19.2.3",
-    "react-calendar-heatmap": "^1.10.0",
     "react-dom": "19.2.3",
     "react-snowfall": "^2.4.0"
   },

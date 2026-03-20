@@ -4,24 +4,59 @@ import { cherryBomb } from "./fonts";
 import Snowfall from "react-snowfall";
 import data from "@/data/home_data.json";
 import { Fragment, useEffect, useState } from "react";
-import CalendarHeatmap from "react-calendar-heatmap";
-import "react-calendar-heatmap/dist/styles.css";
+import { repository } from "./api/github/response";
+import HeatMap from "@uiw/react-heat-map";
 
+type HeatmapData = {
+  date: string;
+  count: number;
+};
 
 export default function Home() {
-  const [apiData, setApiData] = useState(null);
+  const [apiData, setApiData] = useState<HeatmapData[]>([]);
   const pageData = data[0];
+
+  const now = new Date();
+  const timeStart = new Date(now);
+
+  timeStart.setDate(timeStart.getDate() - pageData.config_gh_time_start);
 
   useEffect(() => {
     async function getData() {
       const res = await fetch("/api/github");
-      if(!res.ok) {
-        console.log('Fetching Data Error, Please contact to the page owner');
-      } else {
-        // Tmr Please map the result of API, also find a way to optimize the rate limit plz
+      if (!res.ok) {
+        console.log("Fetching Data Error, Please contact to the page owner");
+        return;
       }
-    }
+      // Tmr Please map the result of API, also find a way to optimize the rate limit plz
 
+      const map = new Map();
+      const fetchedData = await res.json();
+
+      const commitArr: repository[] =
+        fetchedData.commitContributionsByRepository;
+
+      const cutoff = new Date();
+      cutoff.setDate(now.getDate() - pageData.config_gh_time_start);
+
+      commitArr.forEach((repo) => {
+        repo.contributions.nodes.forEach((node) => {
+          const date = node.occurredAt.split("T")[0];
+          const d = new Date(date);
+          if (d < cutoff) return;
+
+          map.set(date, (map.get(date) || 0) + node.commitCount);
+        });
+      });
+
+      const result = Array.from(map, ([date, count]) => ({
+        date,
+        count,
+      }));
+
+      setApiData(result);
+    }
+    // 20/03/2026 - Alr mate, I did it, but not the rate limit tho
     getData();
   }, []);
   return (
@@ -41,6 +76,7 @@ export default function Home() {
                 alt="Suw's pfp"
                 src="/img/avatar.png"
                 fill
+                sizes="full"
                 className="object-cover rounded-full p-1.5"
               />
             </div>
@@ -199,12 +235,20 @@ export default function Home() {
             </div>
           </div>
           <div className=" bg-secondary-gradient p-4 rounded-2xl border-3 overflow-hidden w-2/4">
-            <h1 className="text-main text-xl [-webkit-text-stroke:1px_black]">Github Activities:</h1>
-            <CalendarHeatmap
-            showOutOfRangeDays={true}
-              values={[
-
-              ]}
+            <h1 className="text-main text-xl [-webkit-text-stroke:1px_black]">
+              Github Activities:
+            </h1>
+            <HeatMap
+              className="w-full h-10/12"
+              value={apiData}
+              endDate={now}
+              startDate={timeStart}
+              width={`100%`}
+              height={`100%`}
+              rectSize={20}
+              rectRender={(props, data) => {
+                //Gonna find a way to add tooltips soon
+              }}
             />
           </div>
           <div

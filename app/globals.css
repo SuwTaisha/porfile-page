@@ -6,7 +6,7 @@
 }
 
 .react-calendar-heatmap-month-label {
-    fill: #F1C40F !important;
+    fill: #fff !important;
     stroke: #000 !important;     
     stroke-width: 0.5 !important;     
     font-size: 8px !important;
