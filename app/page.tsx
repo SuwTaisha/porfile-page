@@ -62,7 +62,7 @@ export default function Home() {
   return (
     <main className="h-full w-full flex items-center justify-center ">
       <Snowfall snowflakeCount={70} wind={[0.5, 1]} speed={[0.5, 1]} />
-      <div className="flex items-center justify-center flex-col xl:hidden block">
+      <div className="flex items-center justify-center flex-col xl:hidden">
         <h1 className="text-main text-2xl [-webkit-text-stroke:1px_black]">Sorry for the inconvenience.</h1>
         <h1 className="text-white text-lg [-webkit-text-stroke:1px_black]">This website does not currently support smaller screens.</h1>
         <h1 className="text-white text-lg [-webkit-text-stroke:1px_black]">These features will be updated soon!</h1>
