@@ -60,10 +60,16 @@ export default function Home() {
     getData();
   }, []);
   return (
-    <main className="h-full w-full flex items-center justify-center">
+    <main className="h-full w-full flex items-center justify-center ">
       <Snowfall snowflakeCount={70} wind={[0.5, 1]} speed={[0.5, 1]} />
+      <div className="flex items-center justify-center flex-col xl:hidden block">
+        <h1 className="text-main text-2xl [-webkit-text-stroke:1px_black]">Sorry for the inconvenience.</h1>
+        <h1 className="text-white text-lg [-webkit-text-stroke:1px_black]">This website does not currently support smaller screens.</h1>
+        <h1 className="text-white text-lg [-webkit-text-stroke:1px_black]">These features will be updated soon!</h1>
+        <h1 className="text-white text-lg [-webkit-text-stroke:1px_black]">By Suwa!</h1>
+      </div>
 
-      <div className="w-4/5 m-auto">
+      <div className="w-4/5 m-auto xl:block hidden">
         {/* Start of Biography Section  */}
         <section id="biography" className="flex gap-2">
           {/* Avatar */}
