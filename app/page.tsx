@@ -64,9 +64,9 @@ export default function Home() {
       <Snowfall snowflakeCount={70} wind={[0.5, 1]} speed={[0.5, 1]} />
       <div className="flex items-center justify-center flex-col xl:hidden">
         <h1 className="text-main text-2xl [-webkit-text-stroke:1px_black]">Sorry for the inconvenience.</h1>
-        <h1 className="text-white text-lg [-webkit-text-stroke:1px_black]">This website does not currently support smaller screens.</h1>
-        <h1 className="text-white text-lg [-webkit-text-stroke:1px_black]">These features will be updated soon!</h1>
-        <h1 className="text-white text-lg [-webkit-text-stroke:1px_black]">By Suwa!</h1>
+        <h1 className="text-white [-webkit-text-stroke:1px_black]">This website does not currently support smaller screens.</h1>
+        <h1 className="text-white [-webkit-text-stroke:1px_black]">These features will be updated soon!</h1>
+        <h1 className="text-white [-webkit-text-stroke:1px_black]">By Suwa!</h1>
       </div>
 
       <div className="w-4/5 m-auto xl:block hidden">
