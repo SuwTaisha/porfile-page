@@ -305,8 +305,7 @@ export default function Home() {
       </div>
       <div>
         <p className="text-white [-webkit-text-stroke:1px_black] text-lg">
-          Orignated By <span className="text-main">Suw</span> &
-          <span className="text-main ">Lanzoor</span>
+          Orignated By <span className="text-main">Suw</span> & <span className="text-main ">Lanzoor</span>
         </p>
       </div>
     </main>
