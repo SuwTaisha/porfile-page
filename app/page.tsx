@@ -62,22 +62,12 @@ export default function Home() {
   return (
     <main>
       <Snowfall snowflakeCount={70} wind={[0.5, 1]} speed={[0.5, 1]} />
-      <div className="content-blocker">
-        <h1>Sorry for the inconvenience.</h1>
-        <p>
-          As of now, this website does not support smaller screens.
-          <br />
-          This feature will be implemented soon.
-          <br />
-          By Suwa!
-        </p>
-      </div>
 
-      <div className="w-4/5 m-auto xl:block hidden profile">
+      <div className="w-full max-w-4xl px-4 sm:px-6 xl:w-4/5 xl:max-w-none mx-auto">
         {/* Start of Biography Section */}
         <section id="biography" className="profile-section">
           {/* Avatar */}
-          <div id="avatarSection" className="avatar-section">
+          <div id="avatarSection" className="avatar-section mx-auto xl:mx-0">
             <div className="avatar-profile">
               <Image
                 alt="Suw's pfp"
@@ -119,7 +109,7 @@ export default function Home() {
           {/* Biography */}
           <div
             id="bio"
-            className="bg-secondary-gradient p-4 rounded-2xl border-3 w-[40%]"
+            className="bg-secondary-gradient p-4 rounded-2xl border-3 w-full xl:w-[40%]"
           >
             <h1>
               <Image
@@ -154,13 +144,13 @@ export default function Home() {
             ))}
           </div>
           {/* Favorite Musics */}
-          <div className="bg-secondary-gradient w-full p-4 rounded-2xl border-3">
+          <div className="bg-secondary-gradient w-full xl:flex-1 p-4 rounded-2xl border-3">
             <h1>Favorite Artist</h1>
             <iframe
               data-testid="embed-iframe"
               src="https://open.spotify.com/embed/artist/1eavaF4JYVytwilMtljNhO?utm_source=generator"
               width="100%"
-              height="100%"
+              height="152"
               allow="clipboard-write; encrypted-media; fullscreen; picture-in-picture"
               loading="lazy"
             />{" "}
@@ -169,7 +159,7 @@ export default function Home() {
         <section id="information" className="profile-section">
           <div
             id="additionalInformation"
-            className="bg-secondary-gradient p-4 rounded-2xl border-3 overflow-hidden w-[16%]"
+            className="bg-secondary-gradient p-4 rounded-2xl border-3 overflow-hidden w-full xl:w-[16%]"
           >
             <h1>Additional Information</h1>
             <p className="[-webkit-text-stroke:1px_black] text-white  line-clamp-3">
@@ -180,10 +170,13 @@ export default function Home() {
             </p>
           </div>
 
-          <div id="personal" className="relative flex flex-col justify-between">
+          <div
+            id="personal"
+            className="relative flex flex-col justify-between gap-2 w-full xl:w-auto"
+          >
             <div
               id="lifeGoal"
-              className="p-2 bg-secondary-gradient rounded-2xl border-3 overflow-hidden w-48.75"
+              className="p-2 bg-secondary-gradient rounded-2xl border-3 overflow-hidden w-full xl:w-48.75"
             >
               <div className="flex items-center gap-1">
                 <Image
@@ -206,7 +199,7 @@ export default function Home() {
 
             <div
               id="favoriteSeries "
-              className="bg-secondary-gradient py-2 px-4 rounded-2xl border-3 overflow-hidden w-48.75"
+              className="bg-secondary-gradient py-2 px-4 rounded-2xl border-3 overflow-hidden w-full xl:w-48.75"
             >
               <h1>Favorite:</h1>
               <ul className="text-white list-disc ">
@@ -222,26 +215,28 @@ export default function Home() {
               </ul>
             </div>
           </div>
-          <div className=" bg-secondary-gradient p-4 rounded-2xl border-3 overflow-hidden w-2/4">
+          <div className=" bg-secondary-gradient p-4 rounded-2xl border-3 overflow-hidden w-full xl:w-2/4">
             <h1 className="text-main text-xl [-webkit-text-stroke:1px_black]">
               Github Activities
             </h1>
-            <HeatMap
-              className="w-full h-10/12"
-              value={apiData}
-              endDate={now}
-              startDate={timeStart}
-              width={`100%`}
-              height={`100%`}
-              rectSize={20}
-              rectRender={(props, data) => {
-                //Gonna find a way to add tooltips soon
-              }}
-            />
+            <div className="overflow-x-auto">
+              <HeatMap
+                className="w-full h-10/12"
+                value={apiData}
+                endDate={now}
+                startDate={timeStart}
+                width={`100%`}
+                height={`100%`}
+                rectSize={20}
+                rectRender={(props, data) => {
+                  //Gonna find a way to add tooltips soon
+                }}
+              />
+            </div>
           </div>
           <div
             id="socialMedia"
-            className="relative flex flex-col items-center justify-between flex-1"
+            className="relative flex flex-col items-center justify-between gap-2 w-full xl:flex-1"
           >
             <a
               href={pageData?.github}
