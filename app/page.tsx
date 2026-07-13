@@ -3,7 +3,7 @@ import Image from "next/image";
 import { cherryBomb } from "./fonts";
 import Snowfall from "react-snowfall";
 import data from "@/data/home_data.json";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { repository } from "./api/github/response";
 import HeatMap from "@uiw/react-heat-map";
 
@@ -15,6 +15,24 @@ type HeatmapData = {
 export default function Home() {
   const [apiData, setApiData] = useState<HeatmapData[]>([]);
   const pageData = data[0];
+
+  // react-heat-map only measures its container once on mount, so it never
+  // reflows on window resize / orientation change. Remounting it (via key)
+  // whenever the container's width actually changes forces a re-measure.
+  const heatmapContainerRef = useRef<HTMLDivElement>(null);
+  const [heatmapWidth, setHeatmapWidth] = useState(0);
+
+  useEffect(() => {
+    const el = heatmapContainerRef.current;
+    if (!el) return;
+
+    const observer = new ResizeObserver((entries) => {
+      const width = Math.round(entries[0].contentRect.width);
+      setHeatmapWidth((prev) => (prev === width ? prev : width));
+    });
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   const now = new Date();
   const timeStart = new Date(now);
@@ -219,19 +237,22 @@ export default function Home() {
             <h1 className="text-main text-xl [-webkit-text-stroke:1px_black]">
               Github Activities
             </h1>
-            <div className="overflow-x-auto">
-              <HeatMap
-                className="w-full h-10/12"
-                value={apiData}
-                endDate={now}
-                startDate={timeStart}
-                width={`100%`}
-                height={`100%`}
-                rectSize={20}
-                rectRender={(props, data) => {
-                  //Gonna find a way to add tooltips soon
-                }}
-              />
+            <div ref={heatmapContainerRef} className="overflow-x-auto">
+              {heatmapWidth > 0 && (
+                <HeatMap
+                  key={heatmapWidth}
+                  className="w-full h-10/12"
+                  value={apiData}
+                  endDate={now}
+                  startDate={timeStart}
+                  width={`100%`}
+                  height={`100%`}
+                  rectSize={20}
+                  rectRender={(props, data) => {
+                    //Gonna find a way to add tooltips soon
+                  }}
+                />
+              )}
             </div>
           </div>
           <div
